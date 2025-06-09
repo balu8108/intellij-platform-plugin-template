@@ -1,15 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
+    <name>Clion Auto Hide</name>
     <vendor>JetBrains</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity" />
-    </extensions>
+    <!--    <extensions defaultExtensionNs="com.intellij">-->
+    <!--        <projectService serviceImplementation="org.jetbrains.plugins.template.ToolAutoHideListener"/>-->
+    <!--    </extensions>-->
+    <projectListeners>
+        <listener class="org.jetbrains.plugins.template.ToolAutoHideListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    </projectListeners>
+    <!--    <applicationListeners>-->
+    <!--        <listener class="org.jetbrains.plugins.template.ToolAutoHideStartupActivity" topic="" />-->
+    <!--    </applicationListeners>-->
 </idea-plugin>
