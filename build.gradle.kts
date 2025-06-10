@@ -48,6 +48,26 @@ dependencies {
     }
 }
 
+tasks.named("buildSearchableOptions").configure {
+    enabled = false
+}
+
+tasks.named("prepareJarSearchableOptions").configure {
+    enabled = false
+}
+
+//for clion
+//tasks.named("runIde").configure {
+//    if (this is JavaForkOptions) {
+//        jvmArgs = listOf(
+//            "-Didea.indexes.skip=true",
+//            "-Didea.is.internal=false",
+//            "-Dide.no.platform.update=true",
+//            "-Dide.show.tips.on.startup.default.value=false"
+//        )
+//    }
+//}
+
 // Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
     pluginConfiguration {
