@@ -8,12 +8,19 @@
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
-    <!--    <extensions defaultExtensionNs="com.intellij">-->
-    <!--        <projectService serviceImplementation="org.jetbrains.plugins.template.ToolAutoHideListener"/>-->
-    <!--    </extensions>-->
     <projectListeners>
-        <listener class="org.jetbrains.plugins.template.ToolAutoHideListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+        <listener class="org.jetbrains.plugins.template.ToolAutoHideListener"
+            topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener" />
     </projectListeners>
+    <extensions defaultExtensionNs="com.intellij">
+        <!--        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
+        <postStartupActivity
+            implementation="org.jetbrains.plugins.template.startup.MyProjectActivity" />
+        <backgroundPostStartupActivity
+            implementation="org.jetbrains.plugins.template.startup.MyProjectActivity" />
+        <requiredForSmartModeStartupActivity
+            implementation="org.jetbrains.plugins.template.startup.RequiredForSmartModeImpl" />
+    </extensions>
     <!--    <applicationListeners>-->
     <!--        <listener class="org.jetbrains.plugins.template.ToolAutoHideStartupActivity" topic="" />-->
     <!--    </applicationListeners>-->

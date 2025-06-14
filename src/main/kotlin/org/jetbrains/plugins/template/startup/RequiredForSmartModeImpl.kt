@@ -1,15 +1,14 @@
 package org.jetbrains.plugins.template.startup
 
+import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.startup.ProjectActivity
+import com.intellij.openapi.startup.StartupActivity
 import com.intellij.openapi.wm.ToolWindowManager
 
-class MyProjectActivity : ProjectActivity {
-
-    override suspend fun execute(project: Project) {
-
+class RequiredForSmartModeImpl : StartupActivity.RequiredForSmartMode {
+    override fun runActivity(project: Project) {
         val allowedToolWindows = setOf("Project", "Version Control", "Pull Requests", "Commit")
         ApplicationManager.getApplication().invokeLater {
             val toolWindowManager = ToolWindowManager.getInstance(project)
@@ -26,5 +25,9 @@ class MyProjectActivity : ProjectActivity {
                     }
                 }
         }
+
+        val actionManager = ActionManager.getInstance()
+        val allActionIds = actionManager.getActionIdList("")
+        thisLogger().info("Registered actions: ${allActionIds.joinToString(", ")}")
     }
 }
