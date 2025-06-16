@@ -1,30 +1,13 @@
 package org.jetbrains.plugins.template.startup
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.ProjectActivity
-import com.intellij.openapi.wm.ToolWindowManager
+import org.jetbrains.plugins.template.disableItemsOnStartup
 
 class MyProjectActivity : ProjectActivity {
 
     override suspend fun execute(project: Project) {
-
-        val allowedToolWindows = setOf("Project", "Version Control", "Pull Requests", "Commit")
-        ApplicationManager.getApplication().invokeLater {
-            val toolWindowManager = ToolWindowManager.getInstance(project)
-
-            thisLogger().info("balatag: appFrameCreated: ${toolWindowManager.toolWindowIdSet} , ${toolWindowManager.toolWindowIds.toList()}")
-
-            toolWindowManager.toolWindowIdSet
-                .filterNot { it in allowedToolWindows }
-                .forEach { id ->
-                    try {
-                        toolWindowManager.unregisterToolWindow(id)
-                    } catch (th: Throwable) {
-                        thisLogger().warn("Failed to unregister tool window: $id", th)
-                    }
-                }
-        }
+        disableItemsOnStartup(project, thisLogger())
     }
 }

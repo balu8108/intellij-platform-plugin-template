@@ -9,7 +9,6 @@ import com.intellij.openapi.wm.ex.ToolWindowManagerListener
 
 @Service(Service.Level.PROJECT)
 class ToolAutoHideListener(private val project: Project) : ToolWindowManagerListener {
-    val allowedToolWindows = listOf("Project", "Version Control", "Pull Requests", "Commit")
 
     override fun toolWindowsRegistered(ids: List<String?>, toolWindowManager: ToolWindowManager) {
         ids.forEach {
