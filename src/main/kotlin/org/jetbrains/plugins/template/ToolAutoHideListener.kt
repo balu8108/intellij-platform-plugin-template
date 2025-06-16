@@ -48,7 +48,7 @@ class ToolAutoHideListener(private val project: Project) : ToolWindowManagerList
         toolWindow.activate {
             toolWindow.isAutoHide = false
             toolWindow.isShowStripeButton = true
-            manager.setMaximized(toolWindow, true)
+//            manager.setMaximized(toolWindow, true)
 //            toolWindow.setMaximized(true)
         }
     }

@@ -1,8 +1,8 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>All Auto Hide</name>
-    <vendor>JetBrains</vendor>
+    <id>com.bala.plugin</id>
+    <name>Bala Custom</name>
+    <vendor>Bala</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
